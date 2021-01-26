@@ -2,6 +2,7 @@
 <html>
 
   <head>
+  <meta charset="utf-8">
     <title>Calculator!</title>
     <link rel="stylesheet" href="stylesheet.css">
   </head>
@@ -9,22 +10,25 @@
   <body>
     <h1>Four Function Calculator</h1>
 
-    <table id="t1">
+  <div class="sol">
+    <table>
       <tr>
-        <td id="eq">
+        <td id="solution">
         </td>
       </tr>
     </table>
+  </div>
 
+  <div class="calc">
     <table>
       <tr>
       </tr>
       <tr>
         <td>
-          <button type="button" id="b7">7</button>
+          <button type="button" id="b7" onclick="buttonPress(7)">7</button>
         </td>
         <td>
-          <button type="button" id="b8">8</button>
+          <button type="button" id="b8" onclick="buttonPress(8)">8</button>
         </td>
         <td>
           <button type="button" id="b9">9</button>
@@ -76,8 +80,14 @@
         </td>
       </tr>
     </table>
+  </div>
 
-    <script src="main.js"></script>
+    <script>
+      function buttonPress(button) {
+        document.getElementById("solution").innerHTML = button;
+      }
+    </script>
+    <!--script src="main.js"></script-->
 
   </body>
 
