@@ -34,7 +34,7 @@ Main JavaScript for calc page
     document.getElementById("b/").addEventListener("click", function() {buttonPress("/")});
 
     sol = document.getElementById("solution");
-    sol.innerHTML = "0";
+    reset();
 
   }
 
@@ -52,7 +52,7 @@ Main JavaScript for calc page
       decimal();
     }
     //numbers
-    else if(parseInt(button)!=="NaN") {
+    else if(parseFloat(button)!=="NaN") {
       number(button);
     }
 
