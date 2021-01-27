@@ -91,8 +91,10 @@ Main JavaScript for calc page
       if(num1==null) {
         num1 = "0";
       }
-      op = op_;
-      canDecimal = true;
+      if(op==null) {
+        op = op_;
+        canDecimal = true;
+      }
     }
   }
 
@@ -116,17 +118,23 @@ Main JavaScript for calc page
   }
 
   function number(button) {
-    if(num1==null) {
-      num1 = button;
-    }
-    else if(op==null) {
-      num1 = num1 + button;
-    }
-    else if(num2==null) {
-      num2 = button;
+    if(!showSol) {
+      if(num1==null) {
+        num1 = button;
+      }
+      else if(op==null) {
+        num1 = num1 + button;
+      }
+      else if(num2==null) {
+        num2 = button;
+      }
+      else {
+        num2 = num2 + button;
+      }
     }
     else {
-      num2 = num2 + button;
+      reset();
+      num1 = button;
     }
   }
 
