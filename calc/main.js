@@ -8,6 +8,7 @@ Main JavaScript for calc page
   var num1;
   var num2;
   var op;
+  var canDecimal = true;
 
   function init() {
 
@@ -32,28 +33,28 @@ Main JavaScript for calc page
     document.getElementById("b/").addEventListener("click", function() {buttonPress("/")});
 
     sol = document.getElementById("solution");
+    sol.innerHTML = 0;
 
   }
 
   function buttonPress(button) {
+    //clear
     if(button=="c") {
-      sol.innerHTML = null;
       reset();
     }
-
-    if(num1==null) {
-      num1 = button;
+    //operators
+    else if((button=="+" || button=="-" || button=="x" || button=="/")) {
+      operator(button);
     }
-    else if (op==null) {
-      op = button;
+    //decimal
+    else if(button==".") {
+      decimal();
     }
-    else if (num2==null) {
-      num2 = button;
+    //numbers
+    else if(parseInt(button)!=="NaN") {
+      number(button);
     }
-
-    if((num1!==null && op!==null && num2!==null)) {
-      calculator();
-    }
+    display();
   }
 
   function calculator() {
@@ -68,11 +69,73 @@ Main JavaScript for calc page
     num2 = null;
   }
 
+  function operator(op_) {
+    if(num1==null) {
+      num1 = "0";
+    }
+    op = op_;
+    canDecimal = true;
+  }
+
+  function decimal() {
+    if(num1==null) {
+      num1 = "0.";
+      canDecimal = false;
+    }
+    else if((op==null && canDecimal)) {
+      num1 = num1 + ".";
+      canDecimal = false;
+    }
+    else if(num2==null) {
+      num2 = "0.";
+      canDecimal = false;
+    }
+    else if((op!==null && canDecimal)) {
+      num2 = num2 + "."
+      canDecimal = false;
+    }
+  }
+
+  function number(button) {
+    if(num1==null) {
+      num1 = button;
+    }
+    else if(op==null) {
+      num1 = num1 + button;
+    }
+    else if(num2==null) {
+      num2 = button;
+    }
+    else {
+      num2 = num2 + button;
+    }
+  }
+
+  function display() {
+    if(num1==null) {
+      sol.innerHTML = "0";
+    }
+    else {
+      if(op==null) {
+        sol.innerHTML = num1;
+      }
+      else {
+        if(num2==null) {
+          sol.innerHTML = num1 + op;
+        }
+        else {
+          sol.innerHTML = num1 + op + num2;
+        }
+      }
+    }
+  }
+
   function reset() {
     num1 = null;
     op = null;
     num2 = null;
-    sol.innerHTML = null;
+    canDecimal = true;
+    display();
   }
 
   window.addEventListener("load", init, false);
