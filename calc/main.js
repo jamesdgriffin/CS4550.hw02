@@ -1,5 +1,13 @@
+/*
+Main JavaScript for calc page
+*/
+
 (function() {
   "use strict";
+  var sol;
+  var num1;
+  var num2;
+  var op;
 
   function init() {
 
@@ -23,10 +31,48 @@
     document.getElementById("b.").addEventListener("click", function() {buttonPress(".")});
     document.getElementById("b/").addEventListener("click", function() {buttonPress("/")});
 
+    sol = document.getElementById("solution");
+
   }
 
   function buttonPress(button) {
-    document.getElementById("solution").innerHTML = button;
+    if(button=="c") {
+      sol.innerHTML = null;
+      reset();
+    }
+
+    if(num1==null) {
+      num1 = button;
+    }
+    else if (op==null) {
+      op = button;
+    }
+    else if (num2==null) {
+      num2 = button;
+    }
+
+    if((num1!==null && op!==null && num2!==null)) {
+      calculator();
+    }
+  }
+
+  function calculator() {
+    if (op=="+") {
+      sol.innerHTML = num1 + num2;
+    }
+    else {
+      sol.innerHTML = "invalid" + "num1: " + num1 + "num2: " + num2 + "op: " + op;
+    }
+    num1 = null;
+    op = null;
+    num2 = null;
+  }
+
+  function reset() {
+    num1 = null;
+    op = null;
+    num2 = null;
+    sol.innerHTML = null;
   }
 
   window.addEventListener("load", init, false);
