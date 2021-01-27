@@ -7,6 +7,7 @@ Main JavaScript for calc page
   var sol;
   var num1;
   var num2;
+  var numSol;
   var op;
   var canDecimal = true;
 
@@ -33,7 +34,7 @@ Main JavaScript for calc page
     document.getElementById("b/").addEventListener("click", function() {buttonPress("/")});
 
     sol = document.getElementById("solution");
-    sol.innerHTML = 0;
+    sol.innerHTML = "0";
 
   }
 
@@ -54,19 +55,31 @@ Main JavaScript for calc page
     else if(parseInt(button)!=="NaN") {
       number(button);
     }
+
+    if((num1!==null && op!==null && num2!== null)) {
+      calculator();
+    }
+
     display();
   }
 
   function calculator() {
-    if (op=="+") {
-      sol.innerHTML = num1 + num2;
+    var float1 = parseFloat(num1);
+    var float2 = parseFloat(num2);
+
+    if(op=="+") {
+      numSol = float1 + float2;
     }
-    else {
-      sol.innerHTML = "invalid" + "num1: " + num1 + "num2: " + num2 + "op: " + op;
+    else if(op=="-") {
+      numSol = float1 - float2;
     }
-    num1 = null;
-    op = null;
-    num2 = null;
+    else if(op=="x") {
+      numSol = float1 * float2;
+    }
+    else if(op=="/") {
+      numSol = float1 / float2;
+    }
+    display();
   }
 
   function operator(op_) {
@@ -112,21 +125,26 @@ Main JavaScript for calc page
   }
 
   function display() {
-    if(num1==null) {
-      sol.innerHTML = "0";
-    }
-    else {
-      if(op==null) {
-        sol.innerHTML = num1;
+    if(numSol==null) {
+      if(num1==null) {
+        sol.innerHTML = "0";
       }
       else {
-        if(num2==null) {
-          sol.innerHTML = num1 + op;
+        if(op==null) {
+          sol.innerHTML = num1;
         }
         else {
-          sol.innerHTML = num1 + op + num2;
+          if(num2==null) {
+            sol.innerHTML = num1 + op;
+          }
+          else {
+            sol.innerHTML = num1 + op + num2;
+          }
         }
       }
+    }
+    else {
+      sol.innerHTML = numSol;
     }
   }
 
@@ -134,6 +152,7 @@ Main JavaScript for calc page
     num1 = null;
     op = null;
     num2 = null;
+    numSol = null;
     canDecimal = true;
     display();
   }
