@@ -10,6 +10,7 @@ Main JavaScript for calc page
   var numSol;
   var op;
   var canDecimal = true;
+  var showSol = false;
 
   function init() {
 
@@ -83,11 +84,16 @@ Main JavaScript for calc page
   }
 
   function operator(op_) {
-    if(num1==null) {
-      num1 = "0";
+    if((num2!==null && op_=="+")) {
+      showSol = true;
     }
-    op = op_;
-    canDecimal = true;
+    else {
+      if(num1==null) {
+        num1 = "0";
+      }
+      op = op_;
+      canDecimal = true;
+    }
   }
 
   function decimal() {
@@ -125,7 +131,7 @@ Main JavaScript for calc page
   }
 
   function display() {
-    if(numSol==null) {
+    if(!showSol) {
       if(num1==null) {
         sol.innerHTML = "0";
       }
@@ -135,10 +141,10 @@ Main JavaScript for calc page
         }
         else {
           if(num2==null) {
-            sol.innerHTML = num1 + op;
+            sol.innerHTML = num1;
           }
           else {
-            sol.innerHTML = num1 + op + num2;
+            sol.innerHTML = num2;
           }
         }
       }
@@ -154,6 +160,7 @@ Main JavaScript for calc page
     num2 = null;
     numSol = null;
     canDecimal = true;
+    showSol = false;
     display();
   }
 
