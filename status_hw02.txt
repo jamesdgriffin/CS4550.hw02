@@ -1,0 +1,56 @@
+Please fill in answers to the questions below:
+
+
+1. What's your name?
+James Griffin
+
+2. What hostname did you deploy to?
+jimbot.io
+
+3. What's the link to your repository on github with your code?
+https://github.com/yono-oko/CS4550.hw02
+
+4. How many HTML / CSS tutorial exercises did you do?
+I read through most of the tutorials for both and played around with the
+'try it yourself' options they had there, which I found very helpful. Once
+I reached the exercises, I felt that I was ready to move on to the homework.
+
+5. How comfortable do you feel with HTML and CSS now?
+I feel comfortable - the tutorials were helpful and were a very useful
+reference when working on the homework. With the online resources available
+and the amount of HTML and CSS I have learned in the last few days,
+I expect to be fine with these languages.
+
+6. How many JS tutorial exercises did you do?
+I did the first 5 - after that I felt I was ready to move on with the homework.
+
+7. How comfortable do you feel with JS now?
+Fairly comfortable - I am still getting used to how some things work
+(like Objects), but again the online documentation and tutorials are helping,
+and I expect to keep getting more comfortable with JS.
+
+8. Do all of your HTML pages pass the W3C HTML validator?
+(https://validator.w3.org/)
+Yes :)
+
+
+9. Which parts of this assignment did you have trouble with, if any?
+I had some trouble getting Event Listeners to work with my calculator, mostly
+because I was not familiar with JS. It ended up coming down to a simple thing
+missing that held me back for a long time - I neglected the need to wrap
+the below buttonPress call in a function when creating the Event Listener:
+document.getElementById("b7")
+.addEventListener("click", function() {buttonPress("7")});
+
+
+
+
+And here's a list of tasks for grading comments. Just leave this here:
+ - Task 1
+ - Task 2
+ - Task 3
+ - Task 4
+ - Task 5
+ - Task 6
+ - Task 7
+ - Task 8
